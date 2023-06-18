@@ -1,0 +1,29 @@
+.project-section {
+    display: flex;
+    align-items: center;
+
+    .process-container {
+        margin-top: 110px;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px;
+
+        >* {
+            width: 300px;
+        }
+    }
+
+    .back-btn {
+        padding: 20px;
+        background-color: $quote-strong-clr;
+        border-radius: 8px;
+        margin-top: 50px;
+        margin-bottom: 5px;
+
+        &:hover {
+            opacity: .8;
+        }
+    }
+}

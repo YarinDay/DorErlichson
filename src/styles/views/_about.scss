@@ -1,0 +1,55 @@
+.coach-img {
+    direction: rtl;
+    display: flex;
+    background-image: url("../../assets/coach-img3.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    font-size: 1rem;
+    height: 90vh;
+
+    .fade-pic {
+        background-color: black;
+        position: absolute;
+        opacity: .5;
+        width: 100%;
+        height: 90vh;
+    }
+
+    .about-container {
+        z-index: 10;
+        white-space: break-spaces;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        transition: transform .7s;
+
+        a {
+            padding: 15px;
+            border: 2px solid white;
+            border-radius: 8px;
+
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.528);
+            }
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .back-btn-container {
+            display: flex;
+            justify-content: center;
+
+            .back-btn {
+                padding: 15px;
+                border-radius: 8px;
+                font-size: 1.5rem;
+
+                &:hover {
+                    opacity: .8;
+                }
+            }
+        }
+    }
+}

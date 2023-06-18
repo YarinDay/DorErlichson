@@ -1,0 +1,57 @@
+.price-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    .price {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        background-color: black;
+        color: white;
+
+        .price-header {
+            display: flex;
+
+            .price-per-month {
+                text-align: right;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .price-amount {
+                font-size: 6rem;
+            }
+        }
+
+        .price-content {
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        button {
+            font-size: 1.5rem;
+            padding: 10px;
+            border: none;
+            color: black;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .price {
+        width: 100%;
+        height: 400px;
+    }
+}
+
+@media (min-width: 600px) {
+    .price {
+        width: 500px;
+        height: 400px;
+    }
+}

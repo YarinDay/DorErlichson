@@ -1,0 +1,22 @@
+//Setup
+@import "setup/variables";
+
+// Basics
+@import "basics/helpers";
+@import "basics/layout";
+@import "basics/base";
+
+//Views
+@import "views/prices";
+@import "views/about";
+@import "views/projects";
+@import "views/home-page";
+
+//Cmps
+@import "cmps/price";
+@import "cmps/price-details";
+@import "cmps/program-price";
+@import "cmps/personal-price";
+@import "cmps/number-of-trainers";
+@import "cmps/app-footer";
+@import "cmps/app-header";

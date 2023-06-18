@@ -1,0 +1,162 @@
+.main-footer-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    // padding: 0 100px 0 100px;
+    color: white;
+    background-image: url("../../assets/Gym-pic.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .fade-pic {
+        background-color: black;
+        position: absolute;
+        opacity: .8;
+        z-index: 20;
+        width: 100%;
+        height: 35vh;
+    }
+
+    .fc-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: white;
+        direction: rtl;
+
+        z-index: 30;
+
+
+        .tbody {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .fc_button {
+            width: 100%;
+            background-color: rgb(255, 107, 107);
+            color: white;
+            cursor: pointer;
+        }
+
+        input {
+            border-radius: 4px;
+            border: none;
+        }
+    }
+
+    .coach-cradentials {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .links {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        img {
+            border-radius: 10px;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+
+        a {
+            img {
+                width: 30px;
+                height: 30px;
+            }
+
+        }
+    }
+
+
+
+    .leave-credentials {
+        span {
+            color: $quote-strong-clr;
+            cursor: pointer;
+        }
+    }
+}
+
+@media (max-width:1000px) {
+    .main-footer-container {
+        .fc-form {
+            width: 100vw;
+            height: 40vh;
+        }
+        
+        .fade-pic {
+            height: 40vh;
+        }
+    }
+}
+
+@media (min-width:1000px) {
+    .main-footer-container {
+        .fc-form {
+            width: 50vw;
+            height: 35vh;
+        }
+        
+        .fade-pic {
+            height: 35vh;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .main-footer-container {
+        gap: 10px;
+
+        .fc-form {
+
+            h1 {
+                margin: 10px;
+            }
+
+            .tbody {
+                gap: 10px;
+            }
+
+            input {
+                padding: 10px;
+                border-radius: 4px;
+                font-size: 1rem;
+            }
+        }
+
+        .coach-cradentials {
+            img {
+                width: 165px;
+            }
+        }
+    }
+}
+
+@media (min-width: 600px) {
+    .main-footer-container {
+        gap: 30px;
+
+        .fc-form {
+            font-size: 1.5rem;
+            line-height: 1.5;
+
+            .tbody {
+                gap: 30px;
+            }
+
+            input {
+                padding: 10px;
+                border-radius: 4px;
+                font-size: 1rem;
+            }
+        }
+
+        .coach-cradentials {
+            img {
+                width: 300px;
+            }
+        }
+    }
+}
