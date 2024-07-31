@@ -3,11 +3,10 @@ import { NavLink } from 'react-router-dom'
 import { Col } from 'antd';
 
 export function Calculator() {
-    
+
     return (
-      <Col>
-      
-      </Col>
+        <Col>
+        </Col>
     )
 
 }
