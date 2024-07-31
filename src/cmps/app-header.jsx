@@ -76,6 +76,11 @@ export function AppHeader() {
         <a className='link-same-page' href='#projects' onClick={() => {
           return toggleNavBar()
         }}>התהליכים שלנו</a>
+       <NavLink onClick={() => {
+          iBtnActive('prices');
+          return toggleNavBar()
+        }} className='' to='/calculator'><span>מחשבון</span></NavLink>
+
 
       </div>
       <div className={`links-container`}>
