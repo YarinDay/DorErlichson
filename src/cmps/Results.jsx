@@ -1,6 +1,8 @@
 import React from 'react';
 import { Col, Result } from "antd"
 import styled from "styled-components";
+import { isMobile } from 'react-device-detect';
+
 const ResultContainer = styled.div`
   align-items: flex-start;
 `;
@@ -13,8 +15,7 @@ export const Results = ({ tdee, bmr }) => {
         <>
             {tdee && bmr && (
                 <ResultContainer>
-
-                    <Result>
+                    <Result icon={null}>
                         <p>דרישת האנרגיה הכוללת היומית שלך (TDEE) היא: <Highlight>{tdee}</Highlight> קלוריות ליום.</p>
                         <p>קצב חילוף החומרים הבסיסי שלך (BMR) הוא: <Highlight>{bmr}</Highlight> קלוריות ליום.</p>
                         <p>כדי לרדת במשקל:</p>

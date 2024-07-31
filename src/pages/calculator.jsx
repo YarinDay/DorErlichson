@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Radio, Select, Button, Input, ConfigProvider, Row, Col, Result } from 'antd';
+import { Form, Radio, Select, Button, Input, ConfigProvider, Row, Col } from 'antd';
 import styled from 'styled-components';
 import { isMobile } from 'react-device-detect';
 import { Results } from '../cmps/Results.jsx';
@@ -70,7 +70,7 @@ const TDEECalculator = () => {
           <Results tdee={tdee} bmr={bmr} />
         </Col>}
         <Col span={6}>
-          <div className='headline-container process-container'>
+          <div className={`${isMobile && "process-container"} "headline-container"`}>
             <FormContainer>
               <Title>מחשבון TDEE</Title>
               <StyledForm
