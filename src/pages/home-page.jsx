@@ -112,7 +112,6 @@ export function HomePage() {
                 </div>
             </div>
             <hr style={{ width: "90vw" }} />
-            {/* <button onClick={onTogglePrice} className='price-btn'>לעמוד המחירים</button> */}
             <NavLink className='price-btn text-decoration' to='/prices'><span>לעמוד המחירים</span></NavLink>
 
             <hr style={{ width: "90vw" }} />

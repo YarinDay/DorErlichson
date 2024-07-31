@@ -1,13 +1,16 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import FirstImg from "../assets/img/trainers/FirstImg.png"
 import process1 from "../assets/img/trainers/process1.png"
 import process2 from "../assets/img/trainers/process2.png"
 import process3 from "../assets/img/trainers/process3.png"
 import process4 from "../assets/img/trainers/process4.png"
 import process5 from "../assets/img/trainers/process5.png"
+import process6 from "../assets/img/trainers/process6.png"
+import process7 from "../assets/img/trainers/process7.png"
 
 export function Projects() {
-    const processArr = [process1, process4, process5, process2, process3]
+    const processArr = [FirstImg, process4, process1, process6, process7, process5, process2, process3]
     window.scrollTo(0, 0);
 
     return (
