@@ -76,6 +76,7 @@ export function AppHeader() {
         <a className='link-same-page' href='#projects' onClick={() => {
           return toggleNavBar()
         }}>התהליכים שלנו</a>
+       
 
       </div>
       <div className={`links-container`}>

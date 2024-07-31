@@ -19,7 +19,7 @@ export function HomePage() {
     const onToggleReadMore = () => {
         setIsReadMore(!isReadMore)
     }
-    
+
     return (
         <div className="app-home main-view main-layout home-section">
             <div className='headline-container home-img'>
@@ -128,7 +128,7 @@ export function HomePage() {
             {/* <ReviewList /> */}
 
         </div>
-        
+
     )
 
 }
