@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Form, Radio, Select, Button, Input, ConfigProvider, Row, Col } from 'antd';
+import { Form, Radio, Select, Button, Input, ConfigProvider, Row, Col, Result } from 'antd';
 import styled from 'styled-components';
 import { isMobile } from 'react-device-detect';
+import { Results } from '../cmps/Results.jsx';
 
 const { Option } = Select;
 
@@ -26,13 +27,13 @@ const FormContainer = styled.div`
 
 const Title = styled.h2`
   text-align: center;
-  
   margin-bottom: 20px;
 `;
+
 const TDEECalculator = () => {
   const [form] = Form.useForm();
   const [tdee, setTdee] = useState(null);
-  console.log(isMobile);
+  const [bmr, setBmr] = useState(null);
   const activityFactors = {
     sedentary: 1.2,
     light: 1.375,
@@ -51,93 +52,105 @@ const TDEECalculator = () => {
 
   const onFinish = (values) => {
     const { age, gender, height, weight, activity } = values;
-    const bmr = calculateBMR(age, gender, height, weight);
-    const calculatedTDEE = bmr * activityFactors[activity];
+    const calculatedBMR = calculateBMR(age, gender, height, weight);
+    const calculatedTDEE = calculatedBMR * activityFactors[activity];
+    setBmr(calculatedBMR.toFixed(2));
     setTdee(calculatedTDEE.toFixed(2));
     console.log({ calculatedTDEE: calculatedTDEE.toFixed(2) });
   };
-
+  const onResetCalculator = () => {
+    form.resetFields()
+    setBmr(null)
+    setTdee(null)
+  }
   return (
     <ConfigProvider direction="rtl">
-      <div className="app-home main-view main-layout project-section">
-        <div className='headline-container process-container'>
-          <FormContainer>
-            <Title>TDEE מחשבון</Title>
-            <StyledForm
-              form={form}
-              layout="horizontal"
-              onFinish={onFinish}
-              initialValues={{
-                age: 25,
-                gender: 'male',
-                height: 180,
-                weight: 65,
-                activity: 'moderate',
-              }}
-            >
-              <StyledCol>
-                <Form.Item
-                  label="גיל"
-                  name="age"
-                  rules={[{ required: true, message: 'Please input your age!' }]}
-                >
-                  <Input placeholder="הזינו את הגיל שלכם" type="number" min={18} max={80} />
-                </Form.Item>
+      <div className="app-home main-layout project-section" style={{ display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "center", alignItems: "center" }}>
+        {tdee && bmr && !isMobile && <Col span={6}>
+          <Results tdee={tdee} bmr={bmr} />
+        </Col>}
+        <Col span={6}>
+          <div className='headline-container process-container'>
+            <FormContainer>
+              <Title>מחשבון TDEE</Title>
+              <StyledForm
+                form={form}
+                layout="horizontal"
+                onFinish={onFinish}
+                initialValues={{
+                  age: 25,
+                  gender: 'male',
+                  height: 180,
+                  weight: 65,
+                  activity: 'moderate',
+                }}
+              >
+                <StyledCol>
+                  <Form.Item
+                    label="גיל"
+                    name="age"
+                    rules={[{ required: true, message: 'נא להזין את גילך!' }]}
+                  >
+                    <Input placeholder="הזינו את הגיל שלכם" type="number" min={18} max={80} />
+                  </Form.Item>
 
-                <Form.Item
-                  label="מין"
-                  name="gender"
-                  rules={[{ required: true, message: 'Please select your gender!' }]}
-                >
-                  <Radio.Group>
-                    <Radio value="male">גבר</Radio>
-                    <Radio value="female">אישה</Radio>
-                  </Radio.Group>
-                </Form.Item>
+                  <Form.Item
+                    label="מין"
+                    name="gender"
+                    rules={[{ required: true, message: 'נא לבחור את מינך!' }]}
+                  >
+                    <Radio.Group>
+                      <Radio value="male">גבר</Radio>
+                      <Radio value="female">אישה</Radio>
+                    </Radio.Group>
+                  </Form.Item>
 
-                <Form.Item
-                  label={`גובה בס"מ`}
-                  name="height"
-                  rules={[{ required: true, message: 'Please input your height!' }]}
-                >
-                  <Input placeholder='הזינו את הגובה שלכם בסנטימטרים' type="number" min={0} />
-                </Form.Item>
+                  <Form.Item
+                    label={`גובה בס"מ`}
+                    name="height"
+                    rules={[{ required: true, message: 'נא להזין את גובהך!' }]}
+                  >
+                    <Input placeholder='הזינו את הגובה שלכם בסנטימטרים' type="number" min={0} />
+                  </Form.Item>
 
-                <Form.Item
-                  label={`משקל בק"ג`}
-                  name="weight"
-                  rules={[{ required: true, message: 'Please input your weight!' }]}
-                >
-                  <Input placeholder={`הזינו את המשקל שלכם בק"ג`} type="number" min={0} />
-                </Form.Item>
+                  <Form.Item
+                    label={`משקל בק"ג`}
+                    name="weight"
+                    rules={[{ required: true, message: 'נא להזין את משקלך!' }]}
+                  >
+                    <Input placeholder={`הזינו את המשקל שלכם בק"ג`} type="number" min={0} />
+                  </Form.Item>
 
-                <Form.Item
-                  label="Activity"
-                  name="activity"
-                  rules={[{ required: true, message: 'Please select your activity level!' }]}
-                >
-                  <Select>
-                    <Option value="sedentary">Sedentary: little or no exercise</Option>
-                    <Option value="light">Light: exercise 1-3 times/week</Option>
-                    <Option value="moderate">Moderate: exercise 4-5 times/week</Option>
-                    <Option value="intense">Intense: daily exercise or intense exercise 3-4 times/week</Option>
-                    <Option value="very_intense">Very intense: 2+ hours of elevated heart rate activity</Option>
-                  </Select>
-                </Form.Item>
-                <Form.Item>
-                  <Row align={"middle"} justify={"center"} style={{ gap: ".5rem" }}>
-                    <Button color='red' type="primary" htmlType="submit">
-                      חישוב
-                    </Button>
-                    <Button type="default" htmlType="reset" onClick={() => form.resetFields()}>
-                      ניקוי
-                    </Button>
-                  </Row>
-                </Form.Item>
-              </StyledCol>
-            </StyledForm>
-          </FormContainer>
-        </div>
+                  <Form.Item
+                    label="רמת פעילות"
+                    name="activity"
+                    rules={[{ required: true, message: 'נא לבחור את רמת הפעילות שלך!' }]}
+                  >
+                    <Select>
+                      <Option value="sedentary">יושבני: מעט או ללא פעילות גופנית</Option>
+                      <Option value="light">קל: פעילות גופנית 1-3 פעמים בשבוע</Option>
+                      <Option value="moderate">בינונית: פעילות גופנית 4-5 פעמים בשבוע</Option>
+                      <Option value="intense">אינטנסיבית: פעילות גופנית יומית או אינטנסיבית 3-4 פעמים בשבוע</Option>
+                      <Option value="very_intense">אינטנסיבית מאוד: 2+ שעות של פעילות לבבית מוגברת</Option>
+                    </Select>
+                  </Form.Item>
+                  <Form.Item>
+                    <Row align={"middle"} justify={"center"} style={{ gap: ".5rem" }}>
+                      <Button color='red' type="primary" htmlType="submit">
+                        חישוב
+                      </Button>
+                      <Button type="default" htmlType="reset" onClick={onResetCalculator}>
+                        ניקוי
+                      </Button>
+                    </Row>
+                  </Form.Item>
+                </StyledCol>
+              </StyledForm>
+
+            </FormContainer>
+          </div>
+        </Col>
+        {tdee && bmr && isMobile && <Results tdee={tdee} bmr={bmr} />}
       </div>
     </ConfigProvider>
   );
