@@ -44,9 +44,9 @@ const TDEECalculator = () => {
 
   const calculateBMR = (age, gender, height, weight) => {
     if (gender === 'male') {
-      return 88.362 + 13.397 * weight + 4.799 * height - 5.677 * age;
+      return (88.362 + 13.397 * weight + 4.799 * height - 5.677 * age) - 100;
     } else {
-      return 447.593 + 9.247 * weight + 3.098 * height - 4.330 * age;
+      return (447.593 + 9.247 * weight + 3.098 * height - 4.330 * age) - 100;
     }
   };
 
@@ -69,7 +69,7 @@ const TDEECalculator = () => {
         {tdee && bmr && !isMobile && <Col span={6}>
           <Results tdee={tdee} bmr={bmr} />
         </Col>}
-        <Col span={6}>
+        <Col span={isMobile ? 24 : 6}>
           <div className={`${isMobile && "process-container"} "headline-container"`}>
             <FormContainer>
               <Title>מחשבון TDEE</Title>
@@ -127,11 +127,11 @@ const TDEECalculator = () => {
                     rules={[{ required: true, message: 'נא לבחור את רמת הפעילות שלך!' }]}
                   >
                     <Select>
-                      <Option value="sedentary">יושבני: מעט או ללא פעילות גופנית</Option>
-                      <Option value="light">קל: פעילות גופנית 1-3 פעמים בשבוע</Option>
-                      <Option value="moderate">בינונית: פעילות גופנית 4-5 פעמים בשבוע</Option>
-                      <Option value="intense">אינטנסיבית: פעילות גופנית יומית או אינטנסיבית 3-4 פעמים בשבוע</Option>
-                      <Option value="very_intense">אינטנסיבית מאוד: 2+ שעות של פעילות לבבית מוגברת</Option>
+                      <Option value="sedentary">יושבני: מעט או ללא פעילות</Option>
+                      <Option value="light">קל: 1-3 פעמים בשבוע</Option>
+                      <Option value="moderate">בינונית: 4-5 פעמים בשבוע</Option>
+                      <Option value="intense">אינטנסיבית: יומית או 3-4 פעמים בשבוע</Option>
+                      <Option value="very_intense">מאוד אינטנסיבית: 2+ שעות פעילות מוגברת</Option>
                     </Select>
                   </Form.Item>
                   <Form.Item>
