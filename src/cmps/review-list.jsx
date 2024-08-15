@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { ReviewPreview } from './review-preview'
 import { Carousel } from 'react-responsive-carousel';
 
 export const ReviewList = () => {
