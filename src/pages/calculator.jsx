@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Form, Radio, Select, Button, Input, ConfigProvider, Row, Col } from 'antd';
 import styled from 'styled-components';
 import { isMobile } from 'react-device-detect';
@@ -34,6 +34,9 @@ const TDEECalculator = () => {
   const [form] = Form.useForm();
   const [tdee, setTdee] = useState(null);
   const [bmr, setBmr] = useState(null);
+  const resultsRef = useRef(null); // Reference to the Results component
+  const calculatorRef = useRef(null); // Reference to the Results component
+
   const activityFactors = {
     sedentary: 1.2,
     light: 1.375,
@@ -56,12 +59,30 @@ const TDEECalculator = () => {
     const calculatedTDEE = calculatedBMR * activityFactors[activity];
     setBmr(calculatedBMR.toFixed(2));
     setTdee(calculatedTDEE.toFixed(2));
-    console.log({ calculatedTDEE: calculatedTDEE.toFixed(2) });
+
+    if (resultsRef.current) {
+
+      // Adjust scroll after a small delay to ensure the entire element is visible
+      setTimeout(() => {
+        resultsRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        const elementTop = resultsRef.current.getBoundingClientRect().top;
+        const elementHeight = resultsRef.current.getBoundingClientRect().height;
+        const windowHeight = window.innerHeight;
+        console.log({ windowHeight });
+
+
+        // If the element is taller than the window, scroll to the top of the element
+        if (elementHeight > windowHeight) {
+          window.scrollBy(0, elementTop - 20); // Adjust the offset as needed
+        }
+      }, 100);
+    }
   };
   const onResetCalculator = () => {
     form.resetFields()
     setBmr(null)
     setTdee(null)
+    calculatorRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
   return (
     <ConfigProvider direction="rtl">
@@ -71,7 +92,7 @@ const TDEECalculator = () => {
         </Col>}
         <Col span={isMobile ? 24 : 6}>
           <div className={`${isMobile && "process-container"} "headline-container"`}>
-            <FormContainer>
+            <FormContainer ref={calculatorRef}>
               <Title>מחשבון TDEE</Title>
               <StyledForm
                 form={form}
@@ -150,7 +171,9 @@ const TDEECalculator = () => {
             </FormContainer>
           </div>
         </Col>
-        {tdee && bmr && isMobile && <Results tdee={tdee} bmr={bmr} />}
+        <div ref={resultsRef}>
+          {tdee && bmr && isMobile && <Results tdee={tdee} bmr={bmr} />}
+        </div>
       </div>
     </ConfigProvider>
   );
