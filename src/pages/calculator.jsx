@@ -68,7 +68,6 @@ const TDEECalculator = () => {
         const elementTop = resultsRef.current.getBoundingClientRect().top;
         const elementHeight = resultsRef.current.getBoundingClientRect().height;
         const windowHeight = window.innerHeight;
-        console.log({ windowHeight });
 
 
         // If the element is taller than the window, scroll to the top of the element
