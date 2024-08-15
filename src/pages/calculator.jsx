@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Form, Radio, Select, Button, Input, ConfigProvider, Row, Col } from 'antd';
 import styled from 'styled-components';
 import { isMobile } from 'react-device-detect';
@@ -61,22 +61,22 @@ const TDEECalculator = () => {
     setTdee(calculatedTDEE.toFixed(2));
 
     if (resultsRef.current) {
-
-      // Adjust scroll after a small delay to ensure the entire element is visible
       setTimeout(() => {
         resultsRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
         const elementTop = resultsRef.current.getBoundingClientRect().top;
         const elementHeight = resultsRef.current.getBoundingClientRect().height;
         const windowHeight = window.innerHeight;
 
-
-        // If the element is taller than the window, scroll to the top of the element
         if (elementHeight > windowHeight) {
-          window.scrollBy(0, elementTop - 20); // Adjust the offset as needed
+          window.scrollBy(0, elementTop - 20);
         }
       }, 100);
     }
   };
+
+  useEffect(() => {
+    calculatorRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, [calculatorRef])
   const onResetCalculator = () => {
     form.resetFields()
     setBmr(null)
@@ -92,7 +92,7 @@ const TDEECalculator = () => {
         <Col span={isMobile ? 24 : 6}>
           <div className={`${isMobile && "process-container"} "headline-container"`}>
             <FormContainer ref={calculatorRef}>
-              <Title>מחשבון TDEE</Title>
+              <Title>TDEE מחשבון</Title>
               <StyledForm
                 form={form}
                 layout="horizontal"

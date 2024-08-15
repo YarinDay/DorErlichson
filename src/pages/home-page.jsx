@@ -108,7 +108,8 @@ export function HomePage() {
             </div>
             <hr style={{ width: "90vw" }} />
             <NavLink className='price-btn text-decoration' to='/prices'><span>לעמוד המחירים</span></NavLink>
-
+            <hr style={{ width: "90vw" }} />
+            <NavLink className='price-btn text-decoration' to='/calculator'><span>מחשבון הוצאה קלורית יומית</span></NavLink>
             <hr style={{ width: "90vw" }} />
             <div className='progress-headline'>תהליכים</div>
             <div id='projects' className='trainers-process'>
