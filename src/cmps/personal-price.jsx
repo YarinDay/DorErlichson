@@ -10,8 +10,6 @@ export function PersonalPrice() {
                         <div>220₪ לשעה אימון זוגי</div>
                     </div>
                 </div>
-                <div className='personal-price-content'>*210₪ לשעה בקניית כרטיסייה של 10 אימונים</div>
-
             </div>
             <div className='personal-price'>
                 <div className='personal-price-header' style={{ color: 'darkorange' }}>
@@ -19,8 +17,6 @@ export function PersonalPrice() {
                         <div>150₪ לשעה אימון אישי</div>
                     </div>
                 </div>
-                <div className='personal-price-content'>*145₪ לשעה בקניית כרטיסייה של 10 אימונים</div>
-
             </div>
         </div>
     )
