@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { MoreInfoButton } from "./MoreInfoButton.jsx"
 
 export function Price({ onTogglePriceDetails, getPriceDetailsId }) {
     return (
@@ -19,10 +19,7 @@ export function Price({ onTogglePriceDetails, getPriceDetailsId }) {
                     </div>
                 </div>
                 <div className='price-content'>מסלול ליווי אישי אונליין התחייבות לשלושה חודשים</div>
-                <button onClick={() => {
-                    onTogglePriceDetails(true)
-                    getPriceDetailsId(0)
-                }} style={{ backgroundColor: 'darkorange' }}>לפרטים נוספים</button>
+                <MoreInfoButton onTogglePriceDetails={onTogglePriceDetails} getPriceDetailsId={getPriceDetailsId} index={0} />
             </div>
             <div className='price'>
                 <div className='price-header' style={{ color: 'darkorange' }}>
@@ -39,10 +36,7 @@ export function Price({ onTogglePriceDetails, getPriceDetailsId }) {
                     </div>
                 </div>
                 <div className='price-content'>מסלול ליווי אישי אונליין התחייבות לשישה חודשים</div>
-                <button onClick={() => {
-                    onTogglePriceDetails(true)
-                    getPriceDetailsId(1)
-                }} style={{ backgroundColor: 'darkorange' }}>לפרטים נוספים</button>
+                <MoreInfoButton onTogglePriceDetails={onTogglePriceDetails} getPriceDetailsId={getPriceDetailsId} index={1} />
             </div>
         </div>
     )

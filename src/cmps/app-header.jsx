@@ -10,9 +10,6 @@ import mainLogo from "../assets/logo-dor.png"
 
 export function AppHeader() {
   const [isHomeActive, setIsHomeActive] = useState(false)
-  const [isProjectsActive, setProjectsIsActive] = useState(false)
-  const [isAboutActive, setAboutIsActive] = useState(false)
-  const [isPricesActive, setIsPricesActive] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const navigate = useNavigate()
 
@@ -28,24 +25,15 @@ export function AppHeader() {
     switch (btn) {
       case 'home':
         setIsHomeActive(true)
-        setProjectsIsActive(false)
-        setAboutIsActive(false)
         break;
       case 'projects':
-        setProjectsIsActive(true)
-        setAboutIsActive(false)
         setIsHomeActive(false)
         break;
       case 'about':
-        setAboutIsActive(true)
-        setProjectsIsActive(false)
         setIsHomeActive(false)
         break;
       case 'prices':
-        setAboutIsActive(false)
-        setProjectsIsActive(false)
         setIsHomeActive(false)
-        setIsPricesActive(true)
         break;
       default:
         break;
