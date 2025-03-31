@@ -7,14 +7,14 @@ export function PersonalPrice() {
             <div className='personal-price'>
                 <div className='personal-price-header' style={{ color: 'darkorange' }}>
                     <div className='personal-price-per-month'>
-                        <div>220₪ לשעה אימון זוגי</div>
+                        <div>230₪ לשעה אימון זוגי</div>
                     </div>
                 </div>
             </div>
             <div className='personal-price'>
                 <div className='personal-price-header' style={{ color: 'darkorange' }}>
                     <div className='personal-price-per-month'>
-                        <div>150₪ לשעה אימון אישי</div>
+                        <div>170₪ לשעה אימון אישי</div>
                     </div>
                 </div>
             </div>
