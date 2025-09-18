@@ -29,7 +29,6 @@ export function HomePage() {
                         }}>להשארת פרטים
                         </a>
                     </div>
-                    {/* <div className='info'>ball 3</div> */}
                 </div>
             </div>
             <div className='quotes-container'>
