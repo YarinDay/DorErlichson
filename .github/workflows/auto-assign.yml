@@ -31,3 +31,4 @@ jobs:
             } catch (err) {
               core.warning(`Could not assign @${author}: ${err.message}`);
             }
+            
