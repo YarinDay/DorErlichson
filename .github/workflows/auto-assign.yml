@@ -1,0 +1,19 @@
+name: Auto-assign PR author
+
+on:
+  pull_request:
+    types: [opened]
+
+permissions:
+  pull-requests: write
+  issues: write
+
+jobs:
+  assign:
+    runs-on: [runner-small]
+    steps:
+      - name: Assign PR to author
+        uses: actions-ecosystem/action-assign@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          assignees: ${{ github.actor }}
