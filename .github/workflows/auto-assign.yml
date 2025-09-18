@@ -1,19 +1,34 @@
-name: Auto-assign PR author
+name: Auto-assign PR to author
 
 on:
-  pull_request:
-    types: [opened]
+  # Use pull_request_target so it works for PRs from forks, too
+  pull_request_target:
+    types: [opened, reopened, ready_for_review]
 
 permissions:
+  contents: read
+  issues: write        # needed to add assignees
   pull-requests: write
-  issues: write
 
 jobs:
   assign:
-    runs-on: [runner-small]
+    runs-on: ubuntu-latest
     steps:
-      - name: Assign PR to author
-        uses: actions-ecosystem/action-assign@v2
+      - name: Assign author
+        uses: actions/github-script@v7
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          assignees: ${{ github.actor }}
+          script: |
+            const pr = context.payload.pull_request;
+            const author = pr.user.login;
+
+            try {
+              await github.rest.issues.addAssignees({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: pr.number,
+                assignees: [author],
+              });
+              core.info(`Assigned #${pr.number} to @${author}`);
+            } catch (err) {
+              core.warning(`Could not assign @${author}: ${err.message}`);
+            }
