@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   assign:
-    runs-on: [runner-small]
+    runs-on: ubuntu-latest
     steps:
       - name: Assign PR to author
         uses: actions-ecosystem/action-assign@v2
