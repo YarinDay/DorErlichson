@@ -12,10 +12,6 @@ import { NumberOfTrainers } from '../cmps/number-of-trainers'
 export function HomePage() {
     const [isReadMore, setIsReadMore] = useState(false)
 
-    // useEffect(() => {
-    //     window.scrollTo(0, 0);
-    // }, [])
-
     const onToggleReadMore = () => {
         setIsReadMore(!isReadMore)
     }
